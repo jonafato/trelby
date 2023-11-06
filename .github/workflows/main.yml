@@ -35,9 +35,7 @@ jobs:
 
         - name: Install Python dependencies
           run: |
-            pip cache purge
             python -m pip install --upgrade pip wheel
-            pip cache purge
             # Install attrdict3 to support the installation of wxPython from source.
             # In most cases, wxPython can be installed from wheels, but if those are not available,
             # attrdict3 is a prerequisite for installing from source.
@@ -52,10 +50,7 @@ jobs:
             path: ${{ env.pythonLocation }}
             key: ${{ runner.os }}-python-${{ matrix.python-version }}-${{ hashFiles('**/requirements.txt') }}
 
-        - name: Ensure pytest is available on PATH
-          run: echo "/opt/trelby/bin" >> "$GITHUB_PATH"
-
         - name: Test with pytest
           env:
             PYTHONPATH: /opt/trelby
-          run: pytest
+          run: python -m pytest
