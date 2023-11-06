@@ -35,11 +35,9 @@ jobs:
 
         - name: Install Python dependencies
           run: |
-            python -m ensurepip
-            which pip
-            pip --version
-            python -m pip --version
+            pip cache purge
             python -m pip install --upgrade pip wheel
+            pip cache purge
             # Install attrdict3 to support the installation of wxPython from source.
             # In most cases, wxPython can be installed from wheels, but if those are not available,
             # attrdict3 is a prerequisite for installing from source.
