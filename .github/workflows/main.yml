@@ -35,6 +35,7 @@ jobs:
 
         - name: Install Python dependencies
           run: |
+            python -m ensurepip
             which pip
             pip --version
             python -m pip --version
